@@ -25,7 +25,7 @@ jobs:
       - run:
           name: Release
           command: |
-            if [ $CIRCLE_BRANCH = "main" ]; then
+            if [ $CIRCLE_BRANCH = "master" ]; then
               ./release.sh latest ${GITHUB_TOKEN}
             else
               echo "Will not release - not running on main branch"

@@ -34,5 +34,5 @@ jobs:
 workflows:
   go-junit-report:
     jobs:
-      - service-tests:
+      - go-junit-report:
           context: specgen

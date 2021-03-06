@@ -21,7 +21,7 @@ do
         exec_name+='.exe'
     fi
 
-    env GOOS=$GOOS GOARCH=$GOARCH go test -c -o $exec_name
+    env GOOS=$GOOS GOARCH=$GOARCH go build -ldflags "-s -w" -o $exec_name go-junit-report.go
     if [ $? -ne 0 ]; then
         echo 'An error has occurred! Aborting the script execution...'
         exit 1

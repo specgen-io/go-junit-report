@@ -1,0 +1,38 @@
+version: 2.1
+
+jobs:
+  go-junit-report:
+    docker:
+      - image: circleci/golang:1.12
+    working_directory: /go/src/go-junit-report
+    steps:
+      - checkout
+      - run:
+          name: Build
+          command: ./build.sh
+      - store_artifacts:
+          path: ./zips
+          destination: zips
+      - store_artifacts:
+          path: ./dist
+          destination: go-junit-report
+      - store_test_results:
+          path: /tmp/test-results
+      - persist_to_workspace:
+          root: .
+          paths:
+            - dist
+      - run:
+          name: Release
+          command: |
+            if [ $CIRCLE_BRANCH = "main" ]; then
+              ./release.sh latest ${GITHUB_TOKEN}
+            else
+              echo "Will not release - not running on main branch"
+            fi
+
+workflows:
+  go-junit-report:
+    jobs:
+      - service-tests:
+          context: specgen

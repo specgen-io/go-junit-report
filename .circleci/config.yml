@@ -35,4 +35,4 @@ workflows:
   go-junit-report:
     jobs:
       - go-junit-report:
-          context: github
+          context: specgen

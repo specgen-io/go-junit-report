@@ -19,7 +19,7 @@ fi
 
 go get github.com/aktau/github-release
 
-GH_ACCOUNT=vsapronov
+GH_ACCOUNT=specgen-io
 GH_REPO=go-junit-report
 PROGRAM_NAME=go-junit-report
 RELEASE_NAME=$VERSION
